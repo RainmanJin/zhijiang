@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>企业监测</title>
+    <link href="../../style/new/gov_monitor_style.css" type="text/css" rel="stylesheet"/>
+    <link href="../../style/new/gov_style.css" rel="stylesheet" type="text/css"/>
+    <link href="../../style/new/footer.css" rel="stylesheet" type="text/css"/>
+    <link href="${basePath}/style/jquery-ui-autocomplete.css" rel="stylesheet" type="text/css"/>
+    <script data-main="${basePath }/gov/js/monitor/monitor.js" src="${basePath }/gov/js/lib/require.js"></script>
+<body>
+<!--end gov_nav-->
+	<div class="layout" style="width: 74.5%;">
+	<div class="govMain" id="prepareListCallBack">
+	    <div class="govList">
+	        <div class="govList_h3">
+	            <div class="gov_search">
+	                <input placeholder="搜索列表中的企业" id="companyNameInput" type="text" value=""/>
+	                <a id="searchBtn">
+	                    <img src="../../images/gov-images/zs_Gsearch.png">
+	                </a>
+	            </div>
+	            <div class="gov1226_left">	
+	                                          您已选择当前页中的<span>15</span>家企业，或<span style="text-decoration: underline;">选择全部50家企业</span>	                    
+	            </div>
+	            <div class="gov1226_right">
+	                <a href="#" class="gov1226_right_a1">+添加企业</a>
+	                <div id="SelectBox">
+	                    <div class="tag_select" data-attr="0" style="cursor: pointer;">全部企业 <em></em></div>
+	                    <ul class="tag_options" data-attr="0" style="position: absolute; z-index: 999; display: none;">
+	                        <li class="open_selected" data-attr="0" id="selected_cityCode" style="cursor: pointer;">全部企业</li>	                            
+	                        <li class="open" data-attr="${city.key}"style="cursor: pointer;">风险企业</li>
+	                        <li class="open" data-attr="${city.key}"style="cursor: pointer;">风险企业</li>
+	                    </ul>
+	                </div>
+	                <a href="#" class="gov1226_right_a2">删除企业</a>	                	
+	            </div>	
+	        </div>	            	        
+	    </div>
+	    <!--end govList_gk -->
+	   	<div class="govAudit_main govMonitor">
+	        <table cellpadding="0" cellspacing="0" border="0">
+	            <tr id="titleTr">
+	            	<th class="govA3">
+	            		<div class="piaochecked"><!-- on_check-->
+		                <input name="need_inv" type="checkbox" class="radioclass input" value="1">
+		                </div>
+		                                          企业名称
+	            	</th>
+	                <th class="govA1">	
+	                	<div id="uboxstyle02" class="govUb ">	
+	                		<div id="select_cityCode" class="select_box">
+	                            <div id="select_info_cityCode" class="tag_select" data-attr="0" style="cursor: pointer;">选择地区<em></em></div>
+	                            <ul id="options_cityCode" class="tag_options" data-attr="0" style="position: absolute; z-index: 999;display: none;">
+	                                <li class="open_selected" data-attr="0" id="selected_cityCode" style="cursor: pointer;">选择地区</li>
+	                                <li class="open_selected" data-attr="0" id="selected_cityCode" style="cursor: pointer;">选择地区</li>
+	                            </ul>
+	                        </div>
+	                   </div>	                  
+	                </th>
+	                <th class="govA2">
+	                    <div id="uboxstyle03" class="govUb ">
+	                        <div id="select_type" class="select_box">
+	                            <div id="select_info_type" class="tag_select" show_length="12" data-attr="0" style="cursor: pointer;">选择分组<em></em></div>
+	                            <ul id="options_type" class="tag_options" style="position: absolute; z-index: 999;display: none;">
+	                               <li class="open" data-attr="0" style="cursor: pointer;">选择分组</li>
+	                                <li class="open" data-attr="${type.id}">${type.groupName}</li>
+	                            </ul>
+	                        </div>
+	                    </div>
+	                </th>
+	                <th class="govA4" sort="" sort-field="punishCount">行政处罚<em class="govA4-e1"></em><em class="govA4-e2"></em></th>
+	                <th class="govA4" sort="" sort-field="uncreditCount">失信记录</th>
+	                <th class="govA4" sort="" sort-field="owedTaxCount">欠税信息</th>
+	                <th class="govA4" sort="" sort-field="judgmentCount">诉讼记录</th>
+	                <th class="govA4" sort="" sort-field="newsCount">负面报道</th>
+	                <th class="govA5">操作</th>
+	                </tr>
+	                <tbody id="companyMonitorTable">
+	                <tr model>
+	                	<td class='govA3'>
+	                		<div class="piaochecked on_check"><!-- -->
+			                	<input name="need_inv" type="checkbox" class="radioclass input" value="1">
+			                </div>
+			                浙江康恩贝制药股份有限公司
+	                	</td>
+	                    <td class='govA1'>金华市</td>
+	                    <td class='govA2'>外经贸发展专项资金</td>	                    
+	                    <td class='govA4' data_count>3<i>+2</i></td>
+	                    <td class='govA4' data_count>{4}</td>
+	                    <td class='govA4' data_count>{5}</td>
+	                    <td class='govA4' data_count>{6}</td>
+	                    <td class='govA4' data_count>{7}</td>
+	                    <td class='govA5'>
+	                    	<a target="_blank" href='${basePath}/gov/user/company/monitor/detail/list?monitorId={8}'>详情</a>
+	                        <a href="javascript:void(0)" class="deleteTag" data-attr="{8}">删除</a>
+	                    </td>
+	                </tr>
+	                </tbody>
+	            </table>
+				
+	        <div class="zs_page" config='{name: "companyMonitorTable", url:"${basePath}/gov/user/monitor/ajax/list?cityCode=0&type=0", nodata:".detail_nodata", isAjax:true,isShowRedict:true}'></div>
+	        <div class="detail_nodata" style="display: none;">未查询到相关信息</div>	
+	    </div>	        	  
+	</div>
+	</div>
+
+
+	<div class="Add_pop">
+		<a href="#" class="Add-close"><img src="../../images/gov-images/Add-close.png"></a>
+		<ul class="Add_tit">
+			<li class="current">批量添加</li>
+			<li>按条添加</li>
+		</ul>
+		
+		<div class="Add_step">
+			<img src="../../images/gov-images/Add-step.png">
+		</div>
+		<div class="Add_btn">
+			<a href="#" style="color: #e35e2a;background-color: #fff;">下载企业模板</a><a href="#">上传企业名单</a>
+		</div>
+		
+		
+		<div class="Add_input">
+			<p><span>企业名称</span><input type="" value=""></p>
+			<p><span>类型</span><input type="" value=""></p>
+			<p><span>地区</span>
+				<select>
+					<option>fdsf</option>
+				</select>
+			</p>
+		</div>
+		<div class="Add_btn">
+			<a href="#">添加</a>
+		</div>
+		
+	</div>
+	
+	<div class="Add_pop1">
+		<h3>是否删除XX家企业？</h3>
+		<p><button>取消</button><button style="background-color: #e35e2a;color: #fff;">确认</button></p>
+	</div>
+	
+	
+	
+
+<jsp:include page="../footer.jsp"/>
+</body>
+</html>

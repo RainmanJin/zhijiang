@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:solr="http://www.springframework.org/schema/data/solr"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+    	http://www.springframework.org/schema/beans/spring-beans.xsd
+    	http://www.springframework.org/schema/data/solr
+  		http://www.springframework.org/schema/data/solr/spring-solr.xsd">
+
+	<solr:repositories base-package="utn.uzj.repository.solr"/>
+	<!-- <solr:solr-server id="solrServer" url="http://10.0.137.8:8983/solr"/>
+    <bean id="solrTemplate" class="org.springframework.data.solr.core.SolrTemplate">
+        <constructor-arg index="0" ref="solrServer"/>
+        <constructor-arg index="1" value="db"/>
+    </bean> -->
+
+	<!-- 负载均衡方式 -->
+	<bean id="solrServer" class="org.apache.solr.client.solrj.impl.LBHttpSolrServer">
+		<constructor-arg name="solrServerUrls" value="http://10.0.137.7:8983/solr/db,http://10.0.137.8:8983/solr/db"></constructor-arg>
+		<property name="connectionTimeout" value="5000"></property>
+		<property name="soTimeout" value="10000"></property>
+	</bean>
+
+	<bean id="ecShopSolrServer" class="org.apache.solr.client.solrj.impl.LBHttpSolrServer">
+		<constructor-arg name="solrServerUrls" value="http://10.0.137.7:8983/solr/ecshop,http://10.0.137.8:8983/solr/ecshop"></constructor-arg>
+		<property name="connectionTimeout" value="5000"></property>
+		<property name="soTimeout" value="10000"></property>
+	</bean>
+
+	<!-- <bean id="multicoreSolrServerFactory" class="org.springframework.data.solr.server.support.MulticoreSolrServerFactory">
+    	 <constructor-arg index="0" ref="solrServer" />
+    	 <constructor-arg index="1">
+    	 	<array>
+    	 		<value>db</value>
+    	 		<value>ecshop</value>
+    	 	</array>
+    	 </constructor-arg>
+	</bean>
+  
+	<bean id="solrTemplate" class="org.springframework.data.solr.core.SolrTemplate">
+    	 <constructor-arg ref="multicoreSolrServerFactory" />
+	</bean> -->
+
+	<bean id="solrTemplate" class="org.springframework.data.solr.core.UzjSolrTemplate">
+		<constructor-arg index="0" ref="solrServer" />
+		<constructor-arg index="1" value="db" />
+	</bean>
+	<bean id="ecShopSolrTemplate" class="org.springframework.data.solr.core.SolrTemplate">
+		<constructor-arg index="0" ref="ecShopSolrServer" />
+		<constructor-arg index="1" value="ecshop" />
+	</bean>
+</beans>

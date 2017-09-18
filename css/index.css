@@ -1,0 +1,1156 @@
+@charset "utf-8";
+*{
+    -webkit-tap-highlight-color:rgba(0,0,0,0)
+}
+html, body {
+    font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    color: #6c7074;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: inherit;
+    font-weight: normal;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    height: 100%
+}
+ul, ol, li, dd, dl, dt {
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+body {
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+    -webkit-overflow-scrolling: touch;
+    overflow:hidden;
+}
+
+h1, h2, h3, h4, h5, h6, p, a {
+    font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 100%
+}
+
+table, td, tr, th {
+    border-collapse: collapse;
+    border: 0;
+    text-align: left;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    outline: 0;
+    font-weight: normal;
+    color: #6c7074
+}
+a:hover {
+    text-decoration: none
+}
+
+img {
+    border: 0
+}
+
+em, i {
+    font-style: normal
+}
+
+label {
+    display: inline-block
+}
+
+table {
+    width: 100%;
+    border: 0;
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+table th {
+    font-weight: normal
+}
+
+table th, table td {
+    word-wrap: break-word;
+    word-break: break-all
+}
+
+ul, ol {
+    list-style-type: none
+}
+
+b, i {
+    font-weight: normal;
+    font-style: normal
+}
+
+input, select, textarea {
+    vertical-align: middle;
+    outline: 0
+}
+
+input {
+    font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    color: #929292;
+    border: 0;
+    border-radius: 0;
+    -webkit-appearance: none
+}
+
+:focus {
+    outline: 0
+}
+
+.clearfix:after {
+    content: "";
+    overflow: hidden;
+    display: block;
+    visibility: hidden;
+    clear: both;
+    height: 0
+}
+
+.clearfix {
+    zoom: 1;
+}
+.lh_main{
+    width: 1280px;
+    height: 800px;
+    margin: 0;
+    position: relative;
+}
+.lh_main .lh_bg{
+    width: 1280px;
+    height: 547px;
+    background-image: url("../image/bg-shouye.png");
+    background-size: 100%;
+}
+.lh_denglu{
+    width: 1280px;
+    height: 76px;
+}
+.lh_tou{
+    margin-right: 40px;
+    margin-top: 30px;
+    width: 24px;
+    height: 26px;
+    float: right;
+}
+.lh_tou .lh_person{
+    display: block;
+}
+.lh_personimg{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.lh_middleTop{
+    width: 100%;
+    height: 158px;
+}
+.lh_middlePlatform{
+    width: 1280px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    float: left;
+}
+.lh_middlePlatformC{
+    height: 48px;
+    font-size: 48px;
+    display: block;
+    color: #fefefe;
+    font-weight: normal;
+    text-align: center;
+}
+.lh_middleSystem{
+    width: 1280px;
+    margin-bottom: 30px;
+    float: left;
+}
+.lh_middleSystemC{
+    font-size: 20px;
+    display: block;
+    color: #fefefe;
+    font-weight: normal;
+    text-align: center;
+}
+.lh_searchContent{
+    height: 50px;
+    width: 832px;
+    margin:0 auto;
+    margin-bottom: 58px;
+}
+.lh_keySearch{
+    width: 650px;
+    height: 50px;
+    padding: 0 14px;
+    border-radius: 1px 0 0 1px;
+    font-size: 18px;
+    color: #999999;
+    display: block;
+    float: left;
+}
+.lh_searchContent form{
+    margin-top: 0;
+}
+.lh_search{
+    height: 50px;
+    width: 154px;
+    display: block;
+    background: #00bb9c;
+    font-size: 18px;
+    color: #ffffff;
+    margin-left: -1px;
+    padding: 0;
+    float: left;
+}
+.lh_plate{
+    width: 832px;
+    height: 170px;
+    margin: 0 auto;
+}
+.lh_plateUl{
+    width: 100%;
+    height:100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+.lh_plateUl li{
+    width: 260px;
+    height: 170px;
+    flex-direction: column;
+    background: rgba(255,255,255,.16)
+}
+.lh_detectionI{
+    width: 260px;
+    height: 130px;
+    overflow: hidden;
+}
+.lh_detectionI .lh_detectionImg{
+    margin-left:88px;
+    width: 80px;
+    height: 80px;
+    display: block;
+    margin-top: 28px;
+}
+.lh_detectionCharacter{
+    width: 260px;
+    height: 22px;
+}
+.lh_detectionCharacter span{
+    font-size: 22px;
+    color: #fefefe;
+    line-height: 22px;
+    text-align: center;
+    display: block;
+}
+.lh_pointI{
+    width: 260px;
+    height: 130px;
+    overflow: hidden;
+}
+.lh_pointI .lh_pointImg{
+    margin-left:88px;
+    width: 80px;
+    height: 80px;
+    display: block;
+    margin-top: 28px;
+}
+.lh_pointCharacter{
+    width: 260px;
+    height: 22px;
+}
+.lh_pointCharacter span{
+    font-size: 22px;
+    color: #fefefe;
+    line-height: 22px;
+    text-align: center;
+    display: block;
+}
+.lh_cultureI{
+    width: 260px;
+    height: 130px;
+    overflow: hidden;
+}
+.lh_cultureI .lh_cultureImg{
+    margin-left:88px;
+    width: 80px;
+    height: 80px;
+    display: block;
+    margin-top: 28px;
+}
+.lh_cultureCharacter{
+    width: 260px;
+    height: 22px;
+}
+.lh_cultureCharacter span{
+    font-size: 22px;
+    color: #fefefe;
+    line-height: 22px;
+    text-align: center;
+    display: block;
+}
+.lh_guide{
+    height: 253px;
+    width: 100%;
+}
+.lh_unit{
+    height: 72px;
+    width: 100%;
+}
+.lh_unit h1{
+    color: #333333;
+    font-size: 24px;
+    line-height: 72px;
+    text-align: center;
+    font-weight: normal;
+}
+.lh_unitLogo{
+    height: 122px;
+}
+.lh_unitL{
+    width: 1086px;
+    height: 122px;
+    justify-content: space-between;
+    display: flex;
+    margin: auto;
+}
+
+.lh_unitL li{
+    flex-direction: column;
+    width: 198px;
+    height: 122px;
+    background: red;
+}
+.lh_unitL li img{
+    width: 100%;
+    height:100%;
+}
+
+.lh_main .lh_loginBg{
+    width: 100%;
+    height: 100%;
+    background-image: url("../image/loginBg.png");
+    background-size:100% 100% ;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+.lh_serve{
+    height: 57px;
+    width: 100%;
+    margin-top: 130px;
+    margin-bottom: 80px;
+}
+.lh_serve h1{
+    text-align: center;
+    line-height: 57px;
+    font-size:57px;
+    color:#fefefe;
+}
+.lh_loginC{
+    width: 100%;
+    height: 276px;
+}
+.lh_loginCase{
+    width: 420px;
+    height: 276px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 5px;
+}
+.lh_loginCase h1{
+    width: 100%;
+    height:20px;
+    padding-top: 24px;
+    padding-bottom: 26px;
+    font-size: 20px;
+    color: #333333;
+    font-weight: normal;
+    text-align: center;
+}
+.lh_loginForm{
+    height: 206px;
+    width: 328px;
+    padding: 0 46px;
+}
+.lh_form1{
+    position: relative;
+}
+.lh_login_form_group{
+    border: 1px solid #ddd;
+    padding: 11px 10px;
+    height: 42px;
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.lh_gly{
+    height: 20px;
+    text-align: center;
+    width: 20px;
+    top: 10px;
+    display: inline-block;
+    float: left;
+}
+.lh_gly_phone {
+    background-image: url("../image/icon-账号.png");
+    background-size: 100% 100%;
+}
+.lh_gly_cipher{
+    background-image: url("../image/icon-mima.png");
+    background-size: 100% 100%;
+}
+.lh_group_input1{
+    margin-left: 10px;
+    height: 18px;
+    line-height: 20px;
+    font-size: 16px;
+    border: 0;
+    color: #999;
+    float: left;
+    width: 240px;
+    outline: none;
+}
+.lh_button{
+    clear: both;
+}
+.lh_btn{
+    width: 329px;
+    height: 42px;
+    margin-top: 10px;
+    background: #00BA9B;
+    border: none;
+}
+.lh_btnS strong{
+    font-weight: normal;
+    font-size: 18px;
+    color: #ffffff;
+}
+.lh_special{
+    width: 100%;
+    height: 44px;
+    margin-top: 48px;
+}
+.lh_specialI{
+    width: 327px;
+    height: 44px;
+    margin: 0 auto;
+    position: relative;
+}
+.lh_specialImg{
+    width:41px ;
+    height: 34px;
+    position: absolute;
+    left: 2px;
+    top:2px;
+}
+.lh_specialImg{
+    width: 44px;
+    height: 44px;
+}
+.lh_specialPhone{
+    width: 280px;
+    height: 40px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.lh_specialPhone h3:first-child{
+    width: 280px;
+    font-size: 18px;
+    color: #fefefe;
+    font-weight: normal;
+    text-align: end;
+}
+.lh_specialPhone h3:nth-child(2){
+    width: 280px;
+    font-size: 18px;
+    color: #fefefe;
+    font-weight: normal;
+    padding-left: 10px;
+}
+#lh_personage{
+    box-sizing: border-box;
+    height: 80px;
+    width: 1280px;
+    padding-top: 20px;
+    position: relative;
+}
+.lh_return{
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    left: 30px;
+    top: 35px;
+}
+.lh_return a{
+    width: 30px;
+    height: 30px;
+}
+.lh_return img{
+    width: 100%;
+    height: 100%;
+}
+#lh_personage .lh_perCenter{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 60px;
+}
+.lh_perCenter span{
+    font-size: 24px;
+    color: #333333;
+}
+#lh_welcomeCenter{
+    width: 1280px;
+    height: 415px;
+    background: url("../image/icon-welbeijing.png") no-repeat;
+
+}
+.lh_welcomeCenterH{
+    float: left;
+    width: 1280px;
+    height: 120px;
+    margin-top: 147px;
+}
+.lh_welcomeCenterH h1{
+    line-height: 58px;
+    font-size: 58px;
+    color: #fefefe;
+    font-weight: normal;
+    text-align: center;
+}
+#lh_buttons{
+    width: 1280px;
+    height: 305px;
+    box-sizing: border-box;
+    padding-left: 248px;
+    padding-top: 60px;
+}
+.lh_buttonR{
+    width: 71px;
+    height: 108px;
+    float: left;
+    margin-left: 168px;
+}
+.lh_buttonR:first-child{
+    margin-left: 0;
+}
+.lh_buttonR img{
+    width: 100%;
+    height: 100%;
+}
+#lh_mainShade{
+    width: 1280px;
+    height: 800px;
+    background: rgba(0,0,0,0.6);
+    position: absolute;
+    left: 0;
+    top:0;
+    display: none;
+}
+#lh_mainShade .lh_mainMiddleCase{
+    width: 450px;
+    height: 240px;
+    background: #ffffff;
+    margin:auto;
+    position: absolute;
+    left: 0;
+    top:0;
+    bottom:0;
+    right: 0;
+}
+#lh_mainShade .lh_logOut{
+    width: 450px;
+    height: 158px;
+    box-sizing: border-box;
+    padding: 68px 0;
+}
+#lh_mainShade span{
+    display: block;
+    font-size: 22px;
+    color: #333333;
+    line-height: 22px;
+    text-align: center;
+}
+#lh_mainShade .lh_mainMiddleCase .lh_buttons{
+    width: 450px;
+    height: 42px;
+}
+.lh_buttonss{
+    width: 134px;
+    height: 42px;
+    border-radius:2px;
+    border: 1px solid #00bb9c;
+    font-size: 18px;
+}
+#lh_mainShade .lh_mainMiddleCase .lh_buttons .lh_loginOut{
+    margin-left: 71px;
+    background: #00bb9c;
+    color: #ffffff;
+}
+#lh_mainShade .lh_mainMiddleCase .lh_buttons .lh_cancel{
+    color: #00bb9c;
+    margin-left: 40px;
+    background: #ffffff;
+}
+#lh_loginRecord{
+    width: 1280px;
+    height: 800px;
+    background: rgba(0,0,0,0.6);
+    position: absolute;
+    left: 0;
+    top:0;
+    display: none;
+}
+#lh_loginRecord .lh_mainMiddleCase1{
+    position: absolute;
+    width: 470px;
+    height: 476px;
+    background: #ffffff;
+    left: 0;
+    right: 0;
+    top:0;
+    bottom: 0;
+    margin: auto;
+}
+#lh_loginRecord .lh_loginRecordSpan{
+    width: 470px;
+    height: 80px;
+}
+#lh_loginRecord .lh_loginRecordSpan .lh_loginRecordSpanH1{
+    width: 470px;
+    height: 50px;
+    box-sizing: border-box;
+    padding: 20px 0 10px;
+}
+#lh_loginRecord .lh_loginRecordSpan h1{
+    font-size: 20px;
+    color: #333333;
+    display: block;
+    font-weight: 700;
+    text-align: center;
+    line-height: 20px;
+}
+#lh_loginRecord .lh_loginRecordSpan .lh_loginRecordSpanH2{
+    width: 470px;
+    height: 30px;
+    box-sizing: border-box;
+    padding-bottom:18px;
+    border-bottom: 1px solid #eeeeee;
+}
+#lh_loginRecord .lh_loginRecordSpan h2{
+    font-size: 12px;
+    color: #999999;
+    display: block;
+    font-weight: normal;
+    text-align: center;
+    line-height: 12px;
+}
+#lh_loginRecord .lh_loginDetection{
+    width: 470px;
+    height: 300px;
+    box-sizing: border-box;
+    padding: 0 30px;
+    overflow: auto;
+    border-bottom: 1px solid #EEEEEE;
+}
+#lh_loginRecord .lh_loginDetection  .lh_loginDetectionE{
+    width: 410px;
+    height: 50px;
+    box-sizing: border-box;
+    padding: 11px 0;
+}
+#lh_loginRecord .lh_loginDetectionE .lh_loginDetectionImg{
+    width: 26px;
+    height: 28px;
+    float: left;
+}
+#lh_loginRecord .lh_loginDetectionE .lh_loginDetectionImg1{
+    width: 100%;
+    height: 100%;
+}
+#lh_loginRecord .lh_loginDetectionE  .lh_loginDetectionImgSpan{
+    float: left;
+    height: 28px;
+    width: 66px;
+    padding-left: 16px;
+}
+#lh_loginRecord .lh_loginDetectionE  .lh_loginDetectionImgSpan h2{
+    font-size: 16px;
+    color: #666666;
+    font-weight: 600;
+    line-height: 28px;
+}
+#lh_loginRecord .lh_loginDetectionE .lh_loginDetectionTime h3{
+    font-size: 12px;
+    color: #999999;
+    float: right;
+    line-height: 28px;
+}
+#lh_loginRecord .lh_buttonReturn{
+    width: 470px;
+    height: 94px;
+    box-sizing: border-box;
+    padding: 26px 168px;
+}
+#lh_loginRecord .lh_loginReturn{
+    background: #00bb9c;
+    color: #ffffff;
+    font-weight: 300;
+}
+/*企业监测*/
+#lh_personage .lh_perSearch{
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    right: 30px;
+    top: 35px;
+}
+#lh_personage .lh_perSearch img{
+    width: 100%;
+    height: 100%;
+}
+#lh_personageContent{
+    width: 1280px;
+    height: 720px;
+    box-sizing: border-box;
+}
+#lh_personageContent .lh_personageRail{
+    box-sizing: border-box;
+    width: 1280px;
+    height: 10px;
+    background: #f4f6f7;
+    border-bottom: 1px solid #eeeeee;
+    border-top: 1px solid #dddddd;
+}
+#lh_personageContent #lh_personageT{
+    height: 708px;
+    overflow: auto;
+}
+#lh_personageContent .lh_personageT{
+    height: 708px;
+}
+#lh_personageContent .lh_personageT .lh_personageTitle{
+    width: 1280px;
+    box-sizing: border-box;
+    height: 50px;
+    /*padding: 0 30px;*/
+    background: #fcfcfc;
+}
+
+#lh_personageContent .lh_personageTitle .lh_perTitle{
+    line-height: 50px;
+    font-size: 18px;
+    color: #444444;
+}
+#lh_personageContent .lh_personageTitle .lh_perTitleName{
+    width: 290px;
+    text-align: left;
+    box-sizing: border-box;
+    padding-left: 30px;
+}
+#lh_personageContent .lh_personageTitle .lh_perTitleName span{
+    display: block;
+}
+#lh_personageContent .lh_personageTitle .lh_perTitleCrea{
+    width: 92px;
+    text-align: center;
+}
+#lh_personageContent .lh_personageTitle .lh_perTitleCrea span{
+    display: block;
+}
+#lh_personageContent .lh_personageTitle .lh_perTitleGrouping{
+    width: 312px;
+    text-align: center;
+}
+#lh_personageContent .lh_personageTitle .lh_perTitleGrouping span{
+    display: block;
+}
+#lh_personageContent .lh_personageTitle .lh_perTitlePunish{
+    width: 146px;
+    text-align: center;
+}
+#lh_personageContent .lh_personageTitle .lh_perTitlePunish span{
+    display: block;
+}
+#lh_personageContent .lh_personageTitle .lh_perTitleShixin{
+    width: 146px;
+    text-align: center;
+}
+#lh_personageContent .lh_personageTitle .lh_perTitleShixin span{
+    display: block;
+}
+#lh_personageContent .lh_personageTitle .lh_perTitleLawsuit{
+    width: 146px;
+    text-align: center;
+}
+#lh_personageContent .lh_personageTitle .lh_perTitleLawsuit span{
+    display: block;
+}
+#lh_personageContent .lh_personageTitle .lh_perTitleNegative{
+    width: 146px;
+    text-align: center;
+}
+#lh_personageContent .lh_personageTitle .lh_perTitleNegative span{
+    display: block;
+}
+#lh_personageContent .lh_personageCC{
+    height:80px;
+    width: 1280px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #eeeeee;
+    float: left;
+}
+#lh_personageContent .lh_personageCC1{
+    text-align: center;
+    font-size: 18px;
+    color: #444444;
+}
+#lh_personageContent .lh_personageCC span{
+    display: block;
+}
+#lh_personageContent .lh_personageCCPunish,.lh_personageCCShixin,.lh_personageCCLawsuit,.lh_personageCCNegative{
+    position: relative;
+}
+#lh_personageContent .lh_personageCC .lh_personageCCPunishNum,.lh_personageCCShixinNum,.lh_personageCCLawsuitNum,.lh_personageCCNegativeNum{
+    height: 15px;
+    font-size: 13px;
+    box-sizing: border-box;
+    padding: 1px 4px;
+    border-radius:10px;
+    background: red;
+    position: absolute;
+    left: 85px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    line-height: 15px;
+    color: #ffffff;
+}
+#lh_personageContent .lh_personageCC .lh_personageCCPunishNum span{
+    float: right;
+}
+#lh_personageContent .lh_personageCC .lh_personageCCShixinNum span{
+    float: right;
+}
+#lh_personageContent .lh_personageCC .lh_personageCCLawsuitNum span{
+    float: right;
+}
+#lh_personageContent .lh_personageCC .lh_personageCCNegativeNum span{
+    float: right;
+}
+#lh_personageContent .lh_perTitle {
+    position: relative;
+}
+#lh_personageContent .lh_perTitle div{
+    width: 7px;
+    height: 12px;
+    position: absolute;
+    right: 30px;
+    top:0;
+    bottom: 0;
+    margin: auto;
+}
+#lh_personageContent .lh_perTitle img{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+#lh_detectionShadow{
+    width: 1280px;
+    height: 800px;
+    background: rgba(0,0,0,0.6);
+    position: absolute;
+    left: 0;
+    top:0;
+    display: none;
+}
+#lh_detectionShadow .lh_detectionMiddleCase{
+    width: 520px;
+    height: 476px;
+    background: #ffffff;
+    margin:auto;
+    position: absolute;
+    left: 0;
+    top:0;
+    bottom:0;
+    right: 0;
+}
+#lh_detectionShadow .lh_detectionMiddleCase .lh_detectionMiddleSpan{
+    height: 46px;
+    box-sizing: border-box;
+    width: 520px;
+    padding-top:30px;
+    padding-left: 30px;
+    text-align: left;
+    font-size: 16px;
+    color: #666666;
+    line-height: 16px;
+    margin-bottom: 20px;
+}
+#lh_detectionShadow .lh_detectionMiddleC{
+    width: 520px;
+    box-sizing: border-box;
+    padding: 0 10px 0 30px;
+}
+#lh_detectionShadow .lh_detectionMiddleCC{
+    /*width: 76px;*/
+    height: 30px;
+    padding: 0 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    background: #BFBFBF;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #ffffff;
+    line-height: 30px;
+    text-align: center;
+    float: left;
+}
+#lh_detectionShadow .lh_detectionMiddleCase .lh_detectionMiddleSpanF{
+    height: 46px;
+    box-sizing: border-box;
+    width: 520px;
+    padding-top:10px;
+    padding-left: 30px;
+    text-align: left;
+    font-size: 16px;
+    color: #666666;
+    line-height: 16px;
+    padding-bottom: 20px;
+}
+#lh_detectionShadow .lh_detectionMiddleC2{
+    width: 520px;
+    box-sizing: border-box;
+    padding: 0 10px 0 30px;
+    height: 150px;
+    overflow: auto;
+}
+#lh_detectionShadow .lh_buttonS{
+    width: 520px;
+    height: 72px;
+    box-sizing: border-box;
+    padding: 0 72px 30px 72px;
+}
+#lh_detectionShadow .lh_buttonS .lh_buttonss{
+    width: 168px;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #00BB9C;
+    font-size: 18px;
+    box-sizing: border-box;
+    float: left;
+}
+#lh_detectionShadow .lh_buttonS .lh_loginOut{
+    color: #ffffff;
+    background: #00BB9C;
+    margin-right: 40px;
+}
+#lh_detectionShadow .lh_buttonS .lh_cancel{
+    color: #00BB9C;
+    background: #ffffff;
+}
+#lh_aboutContent{
+    width: 1280px;
+    height: 720px;
+    box-sizing: border-box;
+}
+#lh_aboutContent .lh_aboutRail{
+    box-sizing: border-box;
+    width: 1280px;
+    height: 10px;
+    background: #f4f6f7;
+    border-bottom: 1px solid #eeeeee;
+    border-top: 1px solid #dddddd;
+}
+#lh_aboutContent .lh_aboutLogo{
+    width: 205px;
+    height: 50px;
+    margin:40px auto;
+}
+#lh_aboutContent .lh_aboutLogo img{
+    width: 100%;
+    height: 100%;
+}
+#lh_aboutContent .lh_aboutIntro{
+    width: 1280px;
+    box-sizing: border-box;
+    padding: 0 100px 40px 100px;
+}
+#lh_aboutContent .lh_aboutIntro .lh_aboutIntroSpan{
+    font-size: 18px;
+    color: #666666;
+}
+#lh_aboutContent span{
+    display: block;
+}
+#lh_aboutContent .lh_aboutContact{
+    width: 1080px;
+    height: 170px;
+    background: #F9F9F9;
+    margin: 0 100px 30px 100px;
+    padding-left: 20px;
+
+}
+#lh_aboutContent .lh_about{
+    width: 1060px;
+    height: 43px;
+    font-size: 18px;
+    color: #333333;
+    text-align: left;
+    line-height: 43px;
+}
+#lh_aboutContent .lh_aboutHe{
+    height: 52px;
+    width: 1280px;
+    text-align: center;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+    line-height: 22px;
+
+}
+#lh_aboutContent .lh_aboutHe h2{
+    color: #333333;
+    font-size: 22px;
+}
+.lh_aboutLogoS{
+    height: 123px;
+}
+#lh_aboutContent .lh_aboutL{
+    width: 1080px;
+    height: 123px;
+    justify-content: space-between;
+    display: flex;
+    margin: auto;
+}
+.lh_aboutL li{
+    flex-direction: column;
+    width: 194px;
+    height: 123px;
+    background: red;
+}
+.lh_aboutL li img{
+    width: 100%;
+    height:100%;
+}
+#lh_problemContent{
+    width: 1280px;
+    height: 720px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    overflow-x:hidden ;
+
+}
+#lh_problemContent .lh_problemRail{
+    box-sizing: border-box;
+    width: 1280px;
+    height: 10px;
+    background: #f4f6f7;
+    border-bottom: 1px solid #eeeeee;
+    border-top: 1px solid #dddddd;
+}
+#lh_problemContent .lh_problemH1{
+    height: 80px;
+    width: 1280px;
+    box-sizing: border-box;
+    padding:30px 40px 30px 35px;
+}
+#lh_problemContent .lh_problemH1Erect{
+    width: 4px;
+    height: 19px;
+    background: #03BD94;
+    margin-right: 10px;
+    float: left;
+}
+#lh_problemContent h2{
+    font-size: 20px;
+    color: #444444;
+    display: block;
+    line-height: 20px;
+}
+#lh_problemContent .lh_problemH2{
+    width: 1280px;
+    height: auto;
+    padding: 0 70px 10px 65px;
+    box-sizing: border-box;
+}
+#lh_problemContent .lh_problemH2 h3{
+    font-size: 18px;
+    color: #666666;
+    font-weight: normal;
+}
+#lh_problemContent .lh_problemImg{
+    width: 1280px;
+    height: 522px;
+    box-sizing: border-box;
+    padding:20px 42px 0 42px;
+}
+#lh_problemContent .lh_problemImg img{
+    width: 100%;
+    height: 100%;
+}
+#lh_problemContent .lh_problemGroup{
+    width: 1280px;
+    height: 301px;
+    box-sizing: border-box;
+    padding: 20px 43px 30px 43px;
+
+}
+#lh_problemContent .lh_problemGroup .lh_problemGroups{
+    width: 238px;
+    height: 251px;
+    border-right: 1px solid #EEEEEE ;
+    position: relative;
+    float: left;
+}
+#lh_problemContent .lh_problemGroupH{
+    width: 100%;
+    height: 68px;
+}
+#lh_problemContent .lh_problemGroupHead{
+    width: 68px;
+    height: 68px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+}
+#lh_problemContent .lh_problemGroupHead img{
+    width: 100%;
+    height: 100%;
+}
+#lh_problemContent .lh_problemGroupHeadH1{
+    width: 100%;
+    height: 80px;
+}
+#lh_problemContent .lh_problemGroupHeadH1 h1{
+    font-size: 20px;
+    color: #444444;
+    line-height: 80px;
+    text-align: center;
+    font-weight: 700;
+}
+#lh_problemContent .lh_problemGroupContent{
+    height: 103px;
+    width: 100%;
+    text-align: center;
+    line-height: 20px;
+}
+#lh_problemContent .lh_problemGroupContent span{
+    color: #444444;
+    font-size: 20px;
+}
+#lh_problemContent .lh_problemGroup .lh_problemGroups:last-child{
+    border: none;
+}

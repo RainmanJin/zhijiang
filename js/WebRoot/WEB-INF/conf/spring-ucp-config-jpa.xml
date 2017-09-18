@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/data/repository
+        http://www.springframework.org/schema/data/repository/spring-repository-1.8.xsd
+		http://www.springframework.org/schema/data/jpa 
+		http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd">
+
+	<!-- 自动加载构建bean -->
+	<jpa:repositories base-package="**/ucp/**" entity-manager-factory-ref="ucpEntityManagerFactory"
+		transaction-manager-ref="ucpTransactionManager"/>
+	
+	<bean id="ucpDataSource" class="utn.app.datasource.DynamicDataSource">  
+        <property name="targetDataSources">  
+            <map key-type="java.lang.String">  
+                <entry key="write" value-ref="ucpWriteDataSource" /> 
+                <entry key="read" value-ref="ucpReadDataSource" />   
+            </map>  
+        </property>  
+        <property name="defaultTargetDataSource" ref="ucpReadDataSource" />  
+    </bean> 
+    
+    <bean id="ucpEntityManagerFactory" name="ucpEntityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	    <property name="dataSource" ref="ucpDataSource" />
+	    <property name="jpaVendorAdapter"> 
+	        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"> 
+	            <!--<property name="databasePlatform" value="${jpa.dialect}"/>-->
+	            <property name="showSql" value="true" />
+	        </bean>
+	    </property>
+	    <property name="persistenceUnitName" value="ucp"/>
+	    <property name="jpaPropertyMap">
+			<map>
+				<entry key="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+				<entry key="hibernate.show_sql" value="true"/>
+				<entry key="hibernate.format_sql" value="false"/>
+				<entry key="hibernate.cache.use_second_level_cache" value="true"/>
+				<entry key="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>
+				<entry key="hibernate.cache.use_query_cache" value="true"/>
+				<entry key="hibernate.cache.use_second_level_cache" value="true"/>
+				<entry key="hibernate.connection.useUnicode" value="true"/>
+				<entry key="hibernate.connection.characterEncoding" value="UTF-8"/>
+				<entry key="hibernate.connection.isolation" value="2"/>
+				<entry key="hibernate.jdbc.fetch_size" value="50"/>
+	        </map>
+		</property>
+	    
+	    <!--自动扫描注解方式配置的hibernate类文件-->  
+        <property name="packagesToScan">  
+            <list>  
+                <value>utn.uzj.entity.ucp</value>  
+            </list>  
+        </property>  
+	</bean>
+	
+    <!--配置事务管理器-->  
+    <bean id="ucpTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+	    <property name="entityManagerFactory" ref="ucpEntityManagerFactory"/>
+	</bean>
+	 <!--  Transaction interceptor  -->
+	<bean id="ucpTransactionInterceptor" class="utn.app.datasource.TransactionInterceptor">
+         <property name="transactionManager" ref="ucpTransactionManager" />
+         <property name="transactionAttributes">
+              <props>
+                  	<prop key="insert*">PROPAGATION_REQUIRED,-Exception</prop>  
+		            <prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>  
+		            <prop key="edit*">PROPAGATION_REQUIRED,-Exception</prop>  
+		            <prop key="save*">PROPAGATION_REQUIRED,-Exception</prop>  
+		            <prop key="add*">PROPAGATION_REQUIRED,-Exception</prop>  
+		            <prop key="new*">PROPAGATION_REQUIRED,-Exception</prop>  
+		            <prop key="set*">PROPAGATION_REQUIRED,-Exception</prop>  
+		            <prop key="remove*">PROPAGATION_REQUIRED,-Exception</prop>  
+		            <prop key="delete*">PROPAGATION_REQUIRED,-Exception</prop>  
+		            <prop key="change*">PROPAGATION_REQUIRED,-Exception</prop>  
+		            <prop key="put*">PROPAGATION_REQUIRED,-Exception</prop>   
+		            
+		            <prop key="get*">PROPAGATION_REQUIRED,readOnly,-Exception</prop>  
+		            <prop key="find*">PROPAGATION_REQUIRED,readOnly,-Exception</prop>  
+		            <prop key="load*">PROPAGATION_REQUIRED,readOnly,-Exception</prop>  
+		            <prop key="search*">PROPAGATION_REQUIRED,readOnly,-Exception</prop>  
+		      	  	<prop key="query*">PROPAGATION_REQUIRED,readOnly,-Exception</prop>   
+			        <prop key="use*">PROPAGATION_REQUIRED,readOnly,-Exception</prop>  
+			        <prop key="count*">PROPAGATION_REQUIRED,readOnly,-Exception</prop>  
+			        <prop key="list*">PROPAGATION_REQUIRED,readOnly,-Exception</prop>
+			        <prop key="*">PROPAGATION_REQUIRED,readOnly,-Exception</prop>
+              </props>
+         </property>
+         <property name="prefixs">
+			<set>
+			<value>insert</value> 
+			<value>update</value> 
+			<value>edit</value> 
+			<value>save</value> 
+			<value>add</value> 
+			<value>new</value> 
+			<value>set</value> 
+			<value>remove</value> 
+			<value>delete</value> 
+			<value>change</value> 
+			<value>put</value> 
+			</set>    		
+    	</property>
+     </bean>
+
+	<!-- BeanName auto proxy to define the interceptor -->
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+         <property name="beanNames">
+              <list>
+                   <value>*Service</value>
+              </list>
+         </property>
+         <property name="interceptorNames">
+              <list>
+                   <value>ucpTransactionInterceptor</value>
+              </list>
+         </property>
+     </bean>
+	 
+    <beans profile="product">
+		<bean id="ucpParentDataSource"
+			class="com.mchange.v2.c3p0.ComboPooledDataSource"
+			destroy-method="close" abstract="true">
+	
+			<property name="driverClass"
+				value="com.mysql.jdbc.Driver" />
+			
+			<!--<property name="jdbcUrl"
+				value="jdbc:mysql://10.0.43.51:3306/ucs?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull" />-->
+			 <property name="jdbcUrl"
+				value="jdbc:mysql://101.198.129.105:3306/ucp?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull" /> 
+	        <property name="user"><value>root</value></property>
+	        <property name="password"><value>root123</value></property>
+	        <property name="minPoolSize"><value>2</value></property>
+	        <property name="maxPoolSize"><value>8</value></property>
+	        <property name="maxIdleTime"><value>1800</value></property>
+	        <property name="acquireIncrement"><value>2</value></property>
+	        <property name="maxStatements"><value>0</value></property>
+	        <property name="initialPoolSize"><value>2</value></property>
+	        <property name="idleConnectionTestPeriod"><value>1800</value></property>
+	        <property name="acquireRetryAttempts"><value>30</value></property>
+	        <property name="breakAfterAcquireFailure"><value>true</value></property>
+	        <property name="testConnectionOnCheckout"><value>false</value></property>
+		</bean>
+	
+		<!-- 读数据源-->     
+	    <bean id="ucpReadDataSource" parent="ucpParentDataSource">
+			<!--<property name="jdbcUrl" value="jdbc:mysql://10.0.43.51:3306/ucs?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull" />-->
+			 <property name="jdbcUrl" value="jdbc:mysql://101.198.129.227:3306/ucp?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull" /> 
+	        <property name="user"><value>root</value></property>
+	        <property name="password"><value>root123</value></property>
+	   </bean>  
+	    
+	    <!-- 写数据源-->  
+	    <bean id="ucpWriteDataSource" parent="ucpParentDataSource"> 
+	         <!--<property name="jdbcUrl" value="jdbc:mysql://10.0.43.51:3306/ucs?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull" />-->
+	         <property name="jdbcUrl" value="jdbc:mysql://101.198.129.105:3306/ucp?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull" /> 
+	        <property name="user"><value>root</value></property>
+	        <property name="password"><value>root123</value></property>
+	   </bean>  
+	</beans>
+</beans>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	   xsi:schemaLocation="
+    	http://www.springframework.org/schema/beans 
+    	http://www.springframework.org/schema/beans/spring-beans.xsd
+    	http://www.springframework.org/schema/data/mongo 
+    	http://www.springframework.org/schema/data/mongo/spring-mongo-1.8.xsd
+    	http://www.springframework.org/schema/data/repository
+    	http://www.springframework.org/schema/data/repository/spring-repository-1.8.xsd
+    	">
+
+	<mongo:repositories base-package="utn.uzj.repository.mongodb"/>
+    <bean id="dateTime2DateConverter" class="utn.app.repository.mongodb.converter.DateTimeToDateConverter"/>
+    <bean id="dateToDateTimeConverter" class="utn.app.repository.mongodb.converter.DateToDateTimeConverter"/>
+    <bean id="dateToStringConverter" class="utn.app.repository.mongodb.converter.DateToStringConverter"/>
+    <bean id="stringToDateTimeConverter" class="utn.app.repository.mongodb.converter.StringToDateTimeConverter"/>
+    <bean id="stringToDateConverter" class="utn.app.repository.mongodb.converter.StringToDateConverter"/>
+    <bean id="dbRefResolver" class="org.springframework.data.mongodb.core.convert.DefaultDbRefResolver">
+        <constructor-arg index="0" ref="mongoDbFactory"/>
+    </bean>
+
+    <bean id="customConversions" class="org.springframework.data.mongodb.core.convert.CustomConversions">
+        <constructor-arg index="0">
+            <list>
+                <ref bean="dateTime2DateConverter"/>
+                <ref bean="dateToDateTimeConverter"/>
+                <ref bean="dateToStringConverter"/>
+                <ref bean="stringToDateTimeConverter"/>
+                <ref bean="stringToDateConverter"/>
+            </list>
+        </constructor-arg>
+    </bean>
+    <bean id="mongoMappingContext"
+          class="org.springframework.data.mongodb.core.mapping.MongoMappingContext" />
+
+    <bean id="mappingMongoConverter" class="utn.app.repository.mongodb.converter.CustomMappingMongoConverter">
+        <constructor-arg name="dbRefResolver" ref="dbRefResolver"/>
+        <constructor-arg name="mappingContext" ref="mongoMappingContext"/>
+        <property name="customConversions" ref="customConversions"/>
+    </bean>
+	<bean id="mongoClientURI" class="com.mongodb.MongoClientURI">
+		<constructor-arg name="uri" value="mongodb://utn:utn123@10.0.137.11:27000,10.0.137.14:27000,10.0.137.17:27000"/>
+		<!--<constructor-arg name="uri" value="mongodb://utn:utn123@192.168.109.240:27017"/>-->
+	</bean>
+	<bean id="mongoClient" class="com.mongodb.MongoClient">
+		<constructor-arg name="uri" ref="mongoClientURI"/>
+	</bean>
+	<bean id="mongoDbFactory" class="org.springframework.data.mongodb.core.SimpleMongoDbFactory">
+		<constructor-arg name="mongoClient" ref="mongoClient"/>
+		<constructor-arg name="databaseName" value="utn_ic"/>
+	</bean>
+	<bean id="secondaryReadPreference" class="com.mongodb.TaggableReadPreference.SecondaryReadPreference"/>
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/>
+        <constructor-arg name="mongoConverter" ref="mappingMongoConverter"/>
+		<property name="readPreference" ref="secondaryReadPreference"/>
+	</bean>
+</beans>

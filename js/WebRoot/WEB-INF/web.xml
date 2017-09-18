@@ -1,0 +1,362 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>uzj</display-name>
+	
+	<context-param> 
+  		<param-name>log4jConfigLocation</param-name> 
+  		<param-value>/WEB-INF/conf/log4j.properties</param-value> 
+    </context-param> 
+ 	<listener> 
+  		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class> 
+ 	</listener>
+	<!-- Spring 容器加载 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+		/WEB-INF/conf/spring-ucp-config-jpa.xml,
+		/WEB-INF/conf/spring-config-jpa.xml,
+		/WEB-INF/conf/spring-solr-config.xml,
+		/WEB-INF/conf/spring-mongodb-config.xml
+		</param-value>
+	</context-param>
+	<context-param>
+	    <param-name>spring.profiles.active</param-name>
+	    <param-value>product</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>utn.uzj.servlet.listener.ServletContextListenerImpl</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>utn.app.servlet.session.SessionListener</listener-class>
+	</listener>
+
+
+	<!-- 字符编码过滤器 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+    <filter>
+        <filter-name>requestContext</filter-name>
+        <filter-class>utn.app.servlet.RequestContextFilter</filter-class>
+        <init-param>
+            <param-name>entryPoints</param-name>
+            <param-value>
+                /upload/gov/*,/images/**,/js/**,/gov/js/**,/style/**
+            </param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>requestContext</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>corsFilter</filter-name>
+        <filter-class>utn.app.servlet.filter.CorsFilter</filter-class>
+        <init-param>
+            <param-name>allowOrigin</param-name>
+            <param-value>http://zhijiangxy.com,http://www.zhijiangxy.com,http://xy.zcom.gov.cn</param-value>
+        </init-param>
+        <init-param>
+            <param-name>allowMethods</param-name>
+            <param-value>GET,POST,PUT,DELETE,OPTIONS</param-value>
+        </init-param>
+        <init-param>
+            <param-name>allowCredentials</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>allowHeaders</param-name>
+            <param-value>Content-Type</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>corsFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+	<filter>
+		<filter-name>csrfFilter</filter-name>
+		<filter-class>utn.app.servlet.filter.csrf.CsrfPreventionFilter</filter-class>
+		<init-param>
+			<param-name>nonceCacheSize</param-name>
+			<param-value>20</param-value>
+		</init-param>
+		<init-param>
+			<param-name>entryPoints</param-name>
+			<param-value>
+				/user/register,/user/activate,/user/toRegister,/user/toLogin,/user/login,/spvision/ajaxLogin,/user/third/*,/user/findPwd,/user/exit,/user/exist,/user/phoneValidate,
+				/search*,/company/*,/user/toUpdateInfo,/user/datum/uploadReport,/user/codeValidate,/user/datum/uploadAdvise,/price/*,/user/owner/add_init,/user/comment/add,/mobile/*,/user/authorization/apply,
+				/user/favorites/add,/user/favorites/remove,/user/favorites/exist,/user/gov/*,/user/current,/user/createPhoneCode,/user/trade/financial/*,/user/integrity/kitchen/*,/user/ajaxLogin,/user/notExist,
+				/user/message,/user/owner/add_success,/user/datum/uploaddatum,/user/taca*,upload/advisePath/*
+			</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>csrfFilter</filter-name>
+		<url-pattern>/user/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>csrfFilter</filter-name>
+		<url-pattern>/company/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>csrfFilter</filter-name>
+		<url-pattern>/mobile/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>xssFilter</filter-name>
+		<filter-class>utn.app.servlet.filter.XssFilter</filter-class>
+		<init-param>
+			<param-name>entryPoints</param-name>
+			<param-value>
+				/trade/zone/preview,
+				/gov/article/preview
+			</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>xssFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>attchFilter</filter-name>
+		<filter-class>utn.uzj.servlet.filter.AttachFilter</filter-class>
+		<init-param>
+			<param-name>entryPoints</param-name>
+			<param-value>
+				/upload/user/logo/*,/upload/gov/article/*,/upload/reportPath/*,/upload/user/datum/*,/upload/user/applicantcheck/*,upload/advisePath/*,/upload/carousel/*
+			</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>attchFilter</filter-name>
+		<url-pattern>/upload/*</url-pattern>
+	</filter-mapping>
+
+	<!-- 接口提供数据配置 -->
+	<servlet>
+		<servlet-name>pinganCompanyServlet</servlet-name>
+		<servlet-class>utn.uzj.servlet.open.ic.PinganCompanyServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>pinganCompanyServlet</servlet-name>
+		<url-pattern>/auth/ic/baseinfo</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 经营范围接口配置 -->
+	<servlet>
+		<servlet-name>PinganCompanyBusinessScopeServlet</servlet-name>
+		<servlet-class>utn.uzj.servlet.open.ic.PinganCompanyBusinessScopeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PinganCompanyBusinessScopeServlet</servlet-name>
+		<url-pattern>/auth/ic/check</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 风险信息接口配置 -->
+	<servlet>
+		<servlet-name>PinganCompanyRiskInfoServlet</servlet-name>
+		<servlet-class>utn.uzj.servlet.open.ic.PinganCompanyRiskInfoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PinganCompanyRiskInfoServlet</servlet-name>
+		<url-pattern>/auth/ic/riskinfo</url-pattern>
+	</servlet-mapping>
+	
+
+	<filter>
+		<filter-name>LoginFilter</filter-name>
+		<filter-class>utn.app.servlet.filter.LoginFilter</filter-class>
+		<init-param>
+			<param-name>entryPoints</param-name>
+			<param-value>
+				/user/toLogin,
+				/user/toRegister,
+				/user/login*,
+				/user/ajaxLogin*,
+				/user/toRegister*,
+				/user/register*,
+				/user/third/login,
+				/user/third/thirdparty,
+				/user/findPwd*,/user/exist,
+				/user/notExist,/user/phoneExist,
+				/user/createPhoneCode,/user/toFindPwd,
+				/user/updateFindPwd,
+				/user/createFindPWDCode,
+				/user/activate,
+				/user/sendEmail,
+				/user/codeValidate,
+				/user/datum/uploadReport,
+				/user/datum/uploadAdvise,
+				<!--/user/trade/financial/*,-->
+				/user/integrity/kitchen/search,
+				/user/trade/financial/search,
+				/taca/index
+			</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>LoginFilter</filter-name>
+		<url-pattern>/user/*</url-pattern>
+		<url-pattern>/taca/*</url-pattern>
+	</filter-mapping>
+    <filter>
+        <filter-name>AssociationLoginFilter</filter-name>
+        <filter-class>utn.app.servlet.filter.AssociationLoginFilter</filter-class>
+        <init-param>
+            <param-name>entryPoints</param-name>
+            <param-value>
+            	/asso/companyindlight/apply/check,
+                /asso/indlight/datum/upload
+            </param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>AssociationLoginFilter</filter-name>
+        <url-pattern>/asso/*</url-pattern>
+    </filter-mapping>
+	<filter>
+		<filter-name>GovSpVisionLoginFilter</filter-name>
+		<filter-class>utn.app.servlet.filter.GovSpVisionLoginFilter</filter-class>
+		<init-param>
+			<param-name>entryPoints</param-name>
+			<param-value>
+				/gov/toLogin,
+				/gov/exit
+			</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>GovSpVisionLoginFilter</filter-name>
+		<url-pattern>/gov/user/*</url-pattern>
+	</filter-mapping>
+
+    <filter>
+        <filter-name>TacaClaimFilter</filter-name>
+        <filter-class>utn.uzj.servlet.filter.TacaApplyFilter</filter-class>
+        <init-param>
+            <param-name>entryPoints</param-name>
+            <param-value>
+                /taca/apply/base/info
+            </param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>TacaClaimFilter</filter-name>
+        <url-pattern>/taca/apply/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>TacaAuditFilter</filter-name>
+        <filter-class>utn.uzj.servlet.filter.TacaAuditFilter</filter-class>
+        <init-param>
+            <param-name>entryPoints</param-name>
+            <param-value>
+            </param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>TacaAuditFilter</filter-name>
+        <url-pattern>/taca/audit/*</url-pattern>
+    </filter-mapping>
+	<filter>
+		<filter-name>appIdentifierFilter</filter-name>
+		<filter-class>utn.uzj.controller.open.app.auth.filter.IdentifierFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>appIdentifierFilter</filter-name>
+		<url-pattern>/mobile/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>appAuthenticationFilter</filter-name>
+		<filter-class>utn.uzj.controller.open.app.filter.UzjAuthenticationFilter</filter-class>
+		<init-param>
+			<param-name>entryPoints</param-name>
+			<param-value>
+				/mobile/v1/user/login,
+				/mobile/v1/user/logout,
+				/mobile/v1/user/reg/*</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>appAuthenticationFilter</filter-name>
+		<url-pattern>/mobile/v1/user/*</url-pattern>
+	</filter-mapping>
+<!--	<filter>
+		<filter-name>openEntityManagerInView</filter-name>
+		<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>openEntityManagerInView</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>-->
+	<!--
+		The front controller of this Spring Web application, responsible for
+		handling all application requests
+	-->
+	<servlet>
+		<servlet-name>mvcServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/conf/spring-mvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- Map all *.spring requests to the DispatcherServlet for handling -->
+	<servlet-mapping>
+		<servlet-name>mvcServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<session-config>
+		<session-timeout>1200</session-timeout>
+	</session-config>
+
+
+	<!-- 欢迎页面 -->
+	<welcome-file-list>
+		<welcome-file>start.jsp</welcome-file>
+	</welcome-file-list>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.jsp</location>
+	</error-page>
+
+	<error-page>
+		<error-code>403</error-code>
+		<location>/404.jsp</location>
+	</error-page>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/500.jsp</location>
+	</error-page>
+
+</web-app>

@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+.copyright{ width:100%; height:50px; line-height:50px; background:#2d2d2d;}
+.copyright p{ color:#fff; text-align:center;}
+.copyright a{color:#fff;}
+
+.index-footer{ background:#5e5e5e; width:100%;  padding:30px 0; overflow:hidden;}
+.index-footer ul{ width:30%; border-right:1px solid #868686; float:left;}
+.index-footer ul h3{ color:#fff; font-size:16px; font-weight:bold; line-height:26px; padding-bottom:5px;}
+.index-footer ul li{ line-height:26px;}
+.index-footer ul a{ color:#eee;}
+.index-footer ul a:hover{ color:#fff;}
+.index-footer ul.f-p{ padding-left:30px;}
+.index-footer ul.f-b{ border-right:0; width:150px;}
+.f-ewm{ float:right; width:87px;}
+.f-ewm p{ text-align:center; color:#eee; line-height:26px;}

@@ -1,0 +1,307 @@
+body{
+    padding: 0;
+    margin: 0;
+    /*background-color: rgba(90, 99, 120, 1);*/
+    width: 100%;
+    height: 100%;
+}
+*{
+    margin: 0 ;
+    border: none;
+    padding: 0;
+}
+.main-container{
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color:rgba(57, 63, 79, 1);
+    padding-bottom: 50px;
+
+}
+.top{
+    background-color: rgba(90, 99, 120, 1);
+    width: 100%;
+    height: 87px;
+    line-height: 87px;
+}
+.top span.title{
+    display: inline-block;
+    padding-left:20px;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+.top span.title a,a:hover{
+    display: inline-block;
+    padding-left:20px;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 24px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+
+
+.top div.top-right{
+    float: right;
+    margin-right: 42px;
+    display: inline-block;
+}
+.top div.top-right span{
+    font-size: 14px;
+    color: #CCCCCC;
+    font-family: 'ArialMT', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+}
+.top img{
+	position: relative;
+	margin-right:7px;
+    width: 15px;
+    height: 17px;
+}
+.main-content{
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+}
+.nav{
+    width:100%;
+    height:40px;
+    padding-left: 20px;
+    line-height: 40px;
+    background: linear-gradient(180deg, rgba(136, 149, 183, 1) 0%, rgba(136, 149, 183, 1) 0%, rgba(90, 99, 120, 1) 100%, rgba(90, 99, 120, 1) 100%);    border: none;
+    border-radius: 3px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-family: 'STHeitiSC-Light', 'Heiti SC Light', 'Heiti SC';
+    font-weight: 200;
+    font-style: normal;
+    font-size: 12px;
+    color: #CCCCCC;
+    text-align: left;
+}
+.nav ul li{
+    text-underline: none;
+    list-style: none;
+    width: 80px;
+    display: inline-block;
+    float: left;
+    text-align: center;
+}
+.nav ul li.on{
+    color: #ffffff;
+}
+.nav ul li:hover{
+    color: #ffffff;
+    cursor: pointer;
+}
+.map-content{
+    float: left;
+    position: relative;
+    margin-left: 20px;
+    width: 861px;
+    height: 650px;
+    background-image: url(../images/zj.png);
+    background-size: 861px 650px ;
+    background-position:center center;
+    background-repeat: no-repeat;
+}
+.hover_text{
+    position: absolute;
+    left: 66px;
+    top:180px;
+    width: 220px;
+    /*height: 17px;*/
+    z-index: 2222;
+
+}
+.hover_text .text {
+    display: none;
+    float: left;
+    overflow: hidden;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    background-color: rgba(41,41,41,0.5);
+    padding: 5px 10px ;
+}
+.hover_text img{
+    width: 30px;
+    margin-top: 8px;
+    margin-right: 0px;
+    height: 30px;
+}
+.hover_text:hover .text{
+    display: inline-block;
+}
+.hover_text:hover img{
+    width:40px;
+    margin-top: 5px;
+    margin-right: -4px;
+    height: 40px;
+}
+.hover_text .text  label{
+    display: inline-block;
+    width: 105px;
+    color: #ffffff;
+    height: 26px;
+    line-height: 26px;
+    font-size: 12px;
+}
+.hover_text .text  span{
+    display: inline-block;
+    width: 45px;
+    color: #ffffff;
+    height: 26px;
+    line-height: 26px;
+    font-size: 14px;
+}
+#hangzhou_digest_icon{
+    float: right;
+    cursor: pointer;
+}
+.map-list{
+    width:380px;
+    height:650px;
+    padding-top: 20px;
+    float: right;
+}
+
+
+
+/*行业对比*/
+.contrast-content{
+    padding-top: 50px;
+
+}
+.contrast-left{
+
+    width: 107px;
+    margin-left:20px;
+    float: left;
+    background-color: #4A5164;
+    color: #CCCCCC;
+    height: 400px;
+}
+.contrast-left span{
+     display: block;
+     height: 36px;
+     line-height: 36px;
+     text-align: center;
+ }
+.contrast-left span.on{
+    color: #ffffff;
+    background-color: rgba(102, 153, 255, 0.447058823529412);
+}
+.contrast-map{
+    width:1050px;
+    padding-left:30px;
+    height:400px;
+    float: left;
+}
+.map-list-top{
+    clear: both;
+    width: 1160px;
+    margin-left:20px;
+    padding-top: 27px;
+}
+.map-list-top table{
+    width:1160px;
+    color: #cccccc;
+    border: 1px solid #818181;
+    border-top: none;
+    border-spacing: 0;
+}
+tr th {
+    border:0px;
+}
+.map-list-top  .list-title{
+    font-weight: 200;
+    background-color: rgba(90, 99, 120, 1);
+    font-style: normal;
+    font-size: 12px;
+    height: 49px;
+}
+.map-list-top .list-title p{
+    text-align: left;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #818181;
+}
+.map-list-top .list-title ul li{
+    list-style-type: none;
+    float: left;
+    text-align: center;
+    padding-top: 7px;
+    width: 81px;
+}
+.tb-data{
+    font-size: 14px;
+    color: #ffffff;
+}
+tr.tb-data td{
+    text-align: center;
+    /*height: 400px;*/
+    padding: 10px 0;
+}
+ul.company-list li,ul.company-list-data li{
+    list-style-type: none;
+    height: 40px;
+    line-height: 40px;
+
+}
+ul.company-list li:hover,ul.company-list-data li:hover{
+    cursor: pointer;
+ }
+ul.company-data-list>li{
+     list-style-type: none;
+     height: 40px;
+    text-align: center;
+     line-height: 40px;
+
+ }
+ul.detail-list li{
+    list-style-type: none;
+    height: 40px;
+    float: left;
+    width: 81px;
+    line-height: 40px;
+
+}
+
+
+
+
+/*行业对比*/
+.manage-content{
+    padding: 0 20px;
+    padding-top: 30px;
+}
+.chart-s1,.chart-s4{
+    float: left;
+    background-color: rgba(90, 99, 120, 0.8);
+}
+.chart-s2,.chart-s3{
+    float: right;
+    width: 440px;
+    height: 260px;
+    padding:40px ;
+    padding-bottom: 0;
+    background-color: rgba(90, 99, 120, 0.8);
+
+}
+.chart-s1{
+     width: 710px;
+    height: 600px;
+ }
+.chart-s4{
+    clear: both;
+    margin-top: 30px;
+    width: 100%;
+    height: 450px;
+}
